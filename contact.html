@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Arisa Teriyapirom</title>
+  <style>
+    :root { --bg: #134ac1; --text: #f5f5f2; --muted: rgba(245, 245, 242, 0.76); --line: rgba(245, 245, 242, 0.38); --blue: #f5f5f2; --accent: #d8d1c7; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 10; padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(29, 86, 207, 0.82); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(245, 245, 242, 0.38); }
+    .logo, nav a, .eyebrow { color: var(--blue); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    nav { display: flex; gap: 28px; }
+    main { min-height: 100vh; padding: 120px 40px 64px; display: flex; align-items: center; justify-content: center; }
+    .contact { width: min(1180px, 100%); display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); align-items: center; gap: clamp(48px, 7vw, 96px); }
+    .contact-intro { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+    .eyebrow { margin-bottom: 20px; }
+    .contact-copy { max-width: 900px; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(42px, 7vw, 94px); line-height: 0.95; letter-spacing: -0.055em; }
+    .contact-details { display: flex; flex-direction: column; align-items: flex-start; margin-top: 42px; font-size: 16px; color: var(--muted); }
+    .contact-details > p { max-width: none; margin-bottom: 22px; font-size: clamp(12px, 1.4vw, 16px); white-space: nowrap; }
+    .contact-methods { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .contact-row { display: flex; align-items: baseline; justify-content: flex-start; gap: 4px; color: var(--text); }
+    .contact-label { width: 48px; flex: 0 0 48px; }
+    .phone-values { display: flex; align-items: baseline; gap: 20px; }
+    .contact-link, .contact-value { display: inline-block; color: var(--text); transition: color 0.25s ease, transform 0.25s ease; }
+    .contact-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .contact-value { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .contact-link:hover, .contact-value:hover { color: var(--accent); transform: translateY(-2px); }
+    .contact-form { width: 100%; padding: 28px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.1); }
+    .contact-form h2 { margin-bottom: 22px; font-family: Georgia, 'Times New Roman', serif; font-size: 24px; font-weight: 400; line-height: 1.15; }
+    .form-field { display: block; margin-bottom: 16px; color: var(--text); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .form-field input, .form-field textarea { display: block; width: 100%; margin-top: 7px; padding: 10px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; outline: none; background: transparent; color: var(--text); font: inherit; font-size: 15px; font-weight: 400; letter-spacing: 0; text-transform: none; }
+    .form-field:first-of-type input { padding-bottom: 5px; }
+    .form-field textarea { min-height: 96px; resize: vertical; }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: var(--muted); }
+    .form-field input:focus, .form-field textarea:focus { border-bottom-color: var(--text); }
+    .submit-button { margin-top: 4px; padding: 10px 24px; border: 1px solid var(--text); border-radius: 999px; background: transparent; color: var(--text); cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; transition: background 0.25s ease, color 0.25s ease; }
+    .submit-button:hover { background: var(--text); color: var(--bg); }
+    .submit-button:disabled { cursor: wait; opacity: 0.6; }
+    .form-status { min-height: 21px; margin-top: 14px; color: var(--text); font-size: 13px; }
+    .form-status a { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 900px) {
+      header { padding: 20px; }
+      main { padding: 110px 20px 56px; }
+      nav { gap: 16px; }
+      .contact { grid-template-columns: 1fr; gap: 48px; }
+      .contact-details { margin-top: 32px; }
+      .contact-form { width: min(480px, 100%); justify-self: center; }
+    }
+    @media (max-width: 620px) {
+      .contact-details > p { white-space: normal; }
+      .contact-form { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Arisa Teriyapirom</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="works.html">Works</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="contact">
+      <div class="contact-intro">
+        <p class="contact-copy">Let’s connect and collaborate.</p>
+        <div class="contact-details">
+          <p>Available for freelance, architectural, graphic, editorial, and research-led design projects.</p>
+          <div class="contact-methods">
+            <a href="https://www.linkedin.com/in/arisa-teriyapirom-30a2b7158" class="contact-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/mlgqaprp" method="POST">
+        <h2>Or Get in Touch Here:</h2>
+        <input type="hidden" name="_subject" value="New enquiry from Arisa's portfolio website" />
+        <input type="hidden" name="_template" value="table" />
+        <label class="form-field">
+          Name
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+        <label class="form-field">
+          Contact information
+          <input type="text" name="contact_information" placeholder="Email or phone number" required />
+        </label>
+        <label class="form-field">
+          Inquiry
+          <textarea name="message" required></textarea>
+        </label>
+        <button class="submit-button" type="submit">Submit</button>
+        <p class="form-status" id="form-status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitButton = contactForm.querySelector('.submit-button');
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+      formStatus.textContent = '';
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' }
+        });
+        const result = await response.json();
+
+        if (!response.ok || result.success === 'false' || result.success === false) {
+          throw new Error(result.message || 'Submission failed');
+        }
+
+        contactForm.reset();
+        formStatus.textContent = result.message || 'Thank you — your message has been sent. I will get back to you asap :)';
+      } catch (error) {
+        formStatus.innerHTML = 'The form could not connect. Please try again.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit';
+      }
+    });
+  </script>
+</body>
+</html>

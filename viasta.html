@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viasta | Viaduct Green Festival — Arisa Teriyapirom</title>
+  <style>
+    :root {
+      --bg: #f5f5f2;
+      --text: #1f1f1f;
+      --muted: #77736d;
+      --line: #d8d1c7;
+      --accent-blue: #1d56cf;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 24px 40px;
+      background: rgba(247, 244, 238, 0.82);
+      border-bottom: 1px solid rgba(216, 209, 199, 0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo,
+    nav,
+    .back-link,
+    .meta-label {
+      color: var(--accent-blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    main {
+      padding: 132px 150px 80px;
+    }
+
+    .project-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: 40px;
+      align-items: end;
+      min-height: calc(100vh - 180px);
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      margin: 32px 0 24px;
+      font-size: clamp(25px, 6vw, 60px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    h1 span + span {
+      margin-top: 2px;
+    }
+
+    .project-intro,
+    .section-text {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .section-text a {
+      color: var(--accent-blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .project-intro {
+      max-width: 470px;
+    }
+
+    .hero-image {
+      height: 68vh;
+      min-height: 460px;
+      overflow: hidden;
+      background: #ded8cf;
+    }
+
+    .hero-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-info p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .project-body {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-body h2 {
+      color: var(--accent-blue);
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .detail-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+      margin-top: 48px;
+      padding-top: 24px;
+    }
+
+    .detail-section h3 {
+      margin-bottom: 18px;
+      font-size: clamp(20px, 2.4vw, 30px);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .detail-section .section-text {
+      max-width: 620px;
+    }
+
+    .detail-image {
+      overflow: hidden;
+      border-radius: 6px;
+      background: #ded8cf;
+    }
+
+    .detail-image img {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .detail-image.transparent-image {
+      height: 600px;
+      overflow: hidden;
+      background: transparent;
+      transform: translateY(-40px);
+    }
+
+    .detail-image.transparent-image img {
+      height: auto;
+      aspect-ratio: auto;
+      object-fit: contain;
+    }
+
+    .development-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+      gap: 40px;
+      align-items: start;
+      margin-top: 32px;
+      padding-top: 0;
+    }
+
+    .development-copy h3,
+    .viasta-two-section h3,
+    .design-elements-section h3,
+    .viasta-gallery-section h3 {
+      margin-bottom: 18px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .viasta-two-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+      gap: 40px;
+      align-items: start;
+      margin-top: 72px;
+    }
+
+    .design-elements-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+      gap: 40px;
+      align-items: start;
+      margin-top: 72px;
+    }
+
+    .design-elements-plan img {
+      display: block;
+      width: 90%;
+      height: auto;
+      margin-left: auto;
+      margin-right: 32px;
+      object-fit: contain;
+    }
+
+    .design-elements-plan figcaption {
+      width: 90%;
+      margin-top: -30px;
+      margin-right: 30px;
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+      font-style: italic;
+      text-align: right;
+    }
+
+    .kit-of-parts-image {
+      width: 110%;
+      height: auto;
+      margin-top: 24px;
+      object-fit: contain;
+    }
+
+    .viasta-gallery-section {
+      margin-top: 72px;
+    }
+
+    .viasta-carousel {
+      position: relative;
+      height: 620px;
+      margin-top: 24px;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #f0eee9;
+    }
+
+    .viasta-carousel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.7s ease, opacity 0.7s ease;
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .viasta-carousel-button {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(31, 31, 31, 0.18);
+      border-radius: 50%;
+      background: rgba(240, 238, 233, 0.78);
+      color: var(--text);
+      font-size: 24px;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .viasta-carousel-button.previous {
+      left: 16px;
+    }
+
+    .viasta-carousel-button.next {
+      right: 16px;
+    }
+
+    .viasta-two-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .viasta-two-grid img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .development-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      width: 100%;
+      margin-top: 75px;
+      margin-left: auto;
+    }
+
+    .development-grid img {
+      width: 110%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 20px;
+      }
+
+      nav {
+        gap: 16px;
+      }
+
+      main {
+        padding: 112px 20px 64px;
+      }
+
+      .project-hero,
+      .project-info,
+      .detail-section,
+      .development-section,
+      .viasta-two-section,
+      .design-elements-section {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        height: 420px;
+        min-height: 0;
+      }
+
+      .viasta-carousel {
+        height: 420px;
+      }
+
+      .project-intro,
+      .section-text {
+        font-size: 17px;
+      }
+
+      .development-grid {
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Arisa Teriyapirom</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="works.html">Works</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <a href="spatial-urban-research.html" class="back-link">Back to Spatial Urban Research</a>
+        <h1><span>Viasta | Viaduct</span><span>Green Festival</span></h1>
+        <p class="project-intro">
+          Viasta (Viaduct Festival) is a community-driven placemaking initiative that transforms an 
+          underutilised viaduct in Changi Simei into a vibrant public space. Through participatory 
+          design, sustainability-themed activities, and resident-led programming, the project reconnects 
+          residents with their neighbourhood while demonstrating how overlooked urban spaces can become 
+          inclusive, active, and meaningful community hubs. Building on the success of its first edition, 
+          later iterations increasingly empowered residents to lead the festival's planning and programming, 
+          establishing a sustainable community-led model.<br>
+          My involvement included co-leading community workshops with residents to develop the festival theme, 
+          coordinating across grassroots leaders, residents, volunteers, and SUTD students, and supporting event 
+          planning, curation, and on-site delivery. As the festival continued to evolve, I also contributed 
+          graphic design and consultation for Viasta 4.0, supporting its transition into an independently sustained, 
+          resident-led initiative. And as of the latest Viasta, I participated as a booth owner under 
+          Singapore University of Technology and Design.
+        </p>
+      </div>
+
+      <figure class="hero-image">
+        <img src="images/Viasta/main%20image.jpg" alt="Viasta Viaduct Green Festival">
+      </figure>
+    </section>
+
+    <section class="project-info">
+      <div>
+        <div class="meta-label">Type</div>
+        <p>Socio-Spatial Research and Design</p>
+      </div>
+      <div>
+        <div class="meta-label">Location</div>
+        <p>Singapore</p>
+      </div>
+      <div>
+        <div class="meta-label">Year</div>
+        <p>
+          Aug 2024-Nov 2024<br>
+          Oct 2025-Nov 2025<br>
+          May 2026
+        </p>
+      </div>
+      <div>
+        <div class="meta-label">Role</div>
+        <p>Project Managemnt, Coordination, Design</p>
+      </div>
+    </section>
+
+    <section class="project-body">
+      <h2>Project Details.</h2>
+
+      <div class="detail-section">
+        <figure class="detail-image transparent-image">
+          <img src="images/Viasta/changi simei iso.png" alt="Community activity at Viasta">
+        </figure>
+
+        <div>
+          <h3>1. Project Background.</h3>
+          <p class="section-text">
+            The Joyful Village project envisions five interconnected sites forming a continuous network
+of community spaces linked by shared activities beneath the MRT viaduct. This collective
+spine, Joyful Village @ Changi Simei, strengthens the connection between residents,
+neighborhoods, and the SUTD campus. The Simei viaduct was chosen as the pilot site to test
+this concept, as it serves as a common ground shared by all Changi Simei residents.
+          </p>
+        </div>
+      </div>
+
+      <div class="development-section">
+        <div class="development-copy">
+          <h3>2. Development of Viasta 1.0 | Participatory Design.</h3>
+          <p class="section-text">
+            Viasta 1.0 was initiated by SUTD students from the Social Architecture course in collaboration with the Changi
+            Simei Grassroots Committee. A participatory design workshop was held to reimagine the underutilized
+            viaduct space, beginning with AIgenerated images that visualized different future possibilities for the
+            site. Residents were invited to share feedback on these images and later took part in a covisioning 
+            exercise, creating collages from selected visuals to express their personal preferences and collective vision—ideas that 
+            ultimately shaped the first Viasta festival with the theme of “Vibrant, Care, Green”.
+          </p>
+        </div>
+
+        <div class="development-grid">
+          <img src="images/Viasta/co-visioning%201.png" alt="Viasta participatory co-visioning activity 1">
+          <img src="images/Viasta/co-visioning%202.png" alt="Viasta participatory co-visioning activity 2">
+          <img src="images/Viasta/co-visioning%205.png" alt="Viasta participatory co-visioning activity 3">
+          <img src="images/Viasta/co-visioning%206.png" alt="Viasta participatory co-visioning activity 4">
+        </div>
+      </div>
+
+      <div class="viasta-two-section">
+        <div>
+          <h3>3. Viasta 2.0 | Development &amp; Curation.</h3>
+          <p class="section-text">
+            During the planning of Viasta 2.0, a workshop was held with
+residents who had volunteered in the first edition and
+grassroot committee, aiming to encourage greater community
+leadership and initiative.
+Together, residents co-developed the theme Food, Fix,
+Flashback—a continuation of the festival’s sustainable and
+community-driven vision that celebrated Simei’s history and
+local talents. The session successfully led to the formation of
+a resident volunteer committee that went on to plan and run
+the festival booths.
+          </p>
+        </div>
+
+        <div class="viasta-two-grid">
+          <img src="images/Viasta/Viasta2_development1.jpg" alt="Viasta 2.0 development image 1">
+          <img src="images/Viasta/Viasta2_development2.jpg" alt="Viasta 2.0 development image 2">
+          <img src="images/Viasta/Viasta2_development3.jpeg" alt="Viasta 2.0 development image 3">
+        </div>
+      </div>
+
+      <div class="design-elements-section">
+        <div>
+          <h3>4. Design Elements | Kit-of-Parts.</h3>
+          <p class="section-text">
+            Modular black crates formed the core design system, easily reconfigured for displays, booth separation, and spatial
+definition. Paired with yellow and white umbrellas that provided shade and vibrancy, these simple elements became the signature
+features of Viasta, carried forward in later editions to reinforce its unique identity.
+          </p>
+          <img class="kit-of-parts-image" src="images/Viasta/kitofpart.png" alt="Viasta kit-of-parts design elements">
+        </div>
+
+        <figure class="design-elements-plan">
+          <img src="images/Viasta/viasta%201.0%20masterplan.png" alt="Viasta 1.0 floor plan">
+          <figcaption>Detailed layout view showcasing the modular setup and spatial organization of the event.</figcaption>
+        </figure>
+      </div>
+
+      <div class="viasta-gallery-section">
+        <h3>5. Images of Viasta.</h3>
+        <p class="section-text">
+          My journey with Viasta reflects the project's evolution. I first experienced the festival as a visitor, 
+          later co-led its curation and coordination, then gradually stepped back into a supporting role through 
+          graphic design and consultation. Most recently, I returned as a booth owner, completing a full-circle 
+          journey that illustrates how an underutilized public space can grow into a thriving, community-led initiative, 
+          where residents take ownership and stewardship of both the event and the place itself. <br>
+            <br>
+          Read more about my journey and involvement in Viasta, from its first edition to the latest, here: <a href="https://www.linkedin.com/feed/update/urn:li:activity:7464157680736120832/" target="_blank" rel="noopener noreferrer">Viasta Linkedin Post</a>.
+
+        </p>
+        <div class="viasta-carousel" id="viasta-carousel">
+          <img id="viasta-carousel-image" src="images/Viasta/images/F553BE37-9E98-4347-BC92-18C58A3B00F7-76949-0000198F38EB9BE2.jpg" alt="Viasta event image 1">
+          <button class="viasta-carousel-button previous" type="button" aria-label="Previous Viasta event image">&#10094;</button>
+          <button class="viasta-carousel-button next" type="button" aria-label="Next Viasta event image">&#10095;</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    (function() {
+      const eventImages = [
+        'images/Viasta/images/F553BE37-9E98-4347-BC92-18C58A3B00F7-76949-0000198F38EB9BE2.jpg',
+        'images/Viasta/images/dancing.jpg',
+        'images/Viasta/images/painting.jpg',
+        'images/Viasta/images/sports.jpg',
+        'images/Viasta/images/recycling goods.jpg',
+        'images/Viasta/images/community farm.jpg',
+        'images/Viasta/images/community farm_2.jpg',
+        'images/Viasta/images/21A93EAA-6B4E-4B81-9332-A21D1A028C42-76949-00001990EED94FFF.jpg',
+        'images/Viasta/images/96266497-E2E4-46FD-A8F1-5BE19DF795C3-76949-000019903294E749.jpg',
+        'images/Viasta/images/IMG_2683.jpeg',
+        'images/Viasta/images/27924466-CD49-4146-8366-A0AE0290C351-76949-00001990F84A8D29.jpg',
+        'images/Viasta/images/PXL_20260516_101117988.jpg',
+        'images/Viasta/images/IMG_6412.jpeg',
+        'images/Viasta/images/IMG_6410.jpeg',
+        'images/Viasta/images/IMG_2681.jpeg',
+        'images/Viasta/images/PXL_20260516_102339713.jpg'
+      ].map(encodeURI);
+
+      const carousel = document.getElementById('viasta-carousel');
+      const previousButton = document.querySelector('.viasta-carousel-button.previous');
+      const nextButton = document.querySelector('.viasta-carousel-button.next');
+      let activeImage = document.getElementById('viasta-carousel-image');
+      let activeIndex = 0;
+      let isMoving = false;
+
+      function showEventImage(direction) {
+        if (isMoving) return;
+        isMoving = true;
+
+        const nextIndex = (activeIndex + direction + eventImages.length) % eventImages.length;
+        const incomingImage = document.createElement('img');
+        incomingImage.src = eventImages[nextIndex];
+        incomingImage.alt = 'Viasta event image ' + (nextIndex + 1);
+        incomingImage.style.transform = direction > 0 ? 'translateX(100%)' : 'translateX(-100%)';
+        incomingImage.style.opacity = '0';
+        carousel.appendChild(incomingImage);
+
+        requestAnimationFrame(function() {
+          incomingImage.style.transform = 'translateX(0)';
+          incomingImage.style.opacity = '1';
+          activeImage.style.transform = direction > 0 ? 'translateX(-100%)' : 'translateX(100%)';
+          activeImage.style.opacity = '0';
+        });
+
+        setTimeout(function() {
+          activeImage.remove();
+          activeImage = incomingImage;
+          activeIndex = nextIndex;
+          isMoving = false;
+        }, 750);
+      }
+
+      previousButton.addEventListener('click', function() {
+        showEventImage(-1);
+      });
+
+      nextButton.addEventListener('click', function() {
+        showEventImage(1);
+      });
+    })();
+  </script>
+</body>
+</html>

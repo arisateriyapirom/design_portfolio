@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regenerative Cities Studies — Arisa Teriyapirom</title>
+  <style>
+    :root {
+      --bg: #f5f5f2;
+      --text: #1f1f1f;
+      --muted: #77736d;
+      --line: #d8d1c7;
+      --accent-blue: #1d56cf;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 24px 40px;
+      background: rgba(247, 244, 238, 0.82);
+      border-bottom: 1px solid rgba(216, 209, 199, 0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo,
+    nav,
+    .back-link,
+    .meta-label {
+      color: var(--accent-blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    main {
+      padding: 132px 150px 80px;
+    }
+
+    .project-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: 40px;
+      align-items: end;
+      min-height: calc(100vh - 180px);
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      margin: 32px 0 24px;
+      font-size: clamp(25px, 6vw, 60px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    h1 span + span {
+      margin-top: 10px;
+    }
+
+    .project-intro,
+    .section-text {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .project-intro {
+      max-width: 470px;
+    }
+
+    .hero-image {
+      height: 68vh;
+      min-height: 460px;
+      overflow: hidden;
+      background: #ded8cf;
+    }
+
+    .hero-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-info {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-info p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .project-body {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .project-body h2 {
+      color: var(--accent-blue);
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .detail-section {
+      margin-top: 24px;
+      padding-top: 0;
+    }
+
+    .detail-section h3 {
+      margin-bottom: 18px;
+      font-size: clamp(20px, 2.4vw, 30px);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .detail-section .section-text {
+      width: 100%;
+      max-width: none;
+    }
+
+    .indicator-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .indicator-box {
+      min-height: 140px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .indicator-box h4 {
+      color: var(--accent-blue);
+      font-size: 12px;
+      line-height: 1.3;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .indicator-box p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .vienna-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .vienna-image img {
+      width: 97%;
+      height: auto;
+      margin-top: 20px;
+      object-fit: contain;
+    }
+
+    .vienna-copy h3 {
+      margin-bottom: 18px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      text-align: right;
+    }
+
+    .scores-section {
+      margin-top: 72px;
+    }
+
+    .scores-section h3 {
+      margin-bottom: 18px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      text-align: left;
+    }
+
+    .scores-section .section-text {
+      width: 100%;
+      max-width: none;
+    }
+
+    .scores-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .scores-map {
+      position: relative;
+    }
+
+    .scores-map-image {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .scores-legend {
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      width: 14%;
+      padding: 1px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.65);
+      pointer-events: none;
+    }
+
+    .scores-legend h4 {
+      margin: 1px;
+      color: var(--text);
+      font-size: 10.5px;
+      line-height: 1.2;
+      text-align: center;
+      white-space: nowrap;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .scores-scale {
+      display: block;
+      flex: 0 0 75%;
+      width: 75%;
+      height: auto;
+      margin: 0;
+      object-fit: contain;
+    }
+
+    .scores-map figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+      font-style: italic;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        padding: 20px;
+      }
+
+      nav {
+        gap: 16px;
+      }
+
+      main {
+        padding: 112px 20px 64px;
+      }
+
+      .project-hero,
+      .project-info,
+      .vienna-section {
+        grid-template-columns: 1fr;
+      }
+
+      .vienna-copy h3 {
+        text-align: left;
+      }
+
+      .indicator-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-image {
+        height: 420px;
+        min-height: 0;
+      }
+
+      .project-intro,
+      .section-text {
+        font-size: 17px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .indicator-grid,
+      .scores-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Arisa Teriyapirom</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="works.html">Works</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <div>
+        <a href="spatial-urban-research.html" class="back-link">Back to Spatial Urban Research</a>
+        <h1><span>Regenerative Cities</span><span>Studies</span></h1>
+        <p class="project-intro">
+          Regenerative City is an ongoing, cross-disciplinary research project 
+          exploring how cities can move beyond sustainability toward regeneration. 
+          Through expert interviews and spatial analysis of case studies in Singapore, Vienna, and other cities, 
+          the project identifies key characteristics and strategies to inform future regenerative 
+          urban development. <br>
+          My involvement focused on the Vienna case study, where I compiled and analysed spatial data from official 
+          Austrian datasets, OpenStreetMap, and WEkEO. Using indicators such as density, nature integration, 
+          sustainable mobility, and access to community services, I evaluated the regenerative potential of 
+          residential neighbourhoods and contributed to the project's comparative research framework.
+        </p>
+      </div>
+
+      <figure class="hero-image">
+        <img src="images/Regen/regen_main.JPG" alt="Regenerative Cities Studies">
+      </figure>
+    </section>
+
+    <section class="project-info">
+      <div>
+        <div class="meta-label">Type</div>
+        <p>Evidence-based Research and Spatial Analysis</p>
+      </div>
+      <div>
+        <div class="meta-label">Location</div>
+        <p>Singapore</p>
+      </div>
+      <div>
+        <div class="meta-label">Year</div>
+        <p>July 2025 - Present</p>
+      </div>
+      <div>
+        <div class="meta-label">Role</div>
+        <p>Researcher</p>
+      </div>
+    </section>
+
+    <section class="project-body">
+      <h2>Project Details.</h2>
+
+      <div class="detail-section">
+        <h3>1. Project Background.</h3>
+        <p class="section-text">
+          The main goal of the case study is to develop an indicator-based framework for assessing 
+          the regenerative potential of residential parcels in Singapore and Vienna, with plans to 
+          expand to other cities. <br>
+           <br>
+          The framework integrates ecological, social, and mobility perspectives into a unified 
+          spatial analysis, organized around five key thematic dimensions.
+        </p>
+
+        <div class="indicator-grid">
+          <article class="indicator-box">
+            <h4>Density of Inhabitation</h4>
+            <p>1. Parcel size <br>
+            2. Gross plot ration</p>
+          </article>
+          <article class="indicator-box">
+            <h4>Access to Nature</h4>
+            <p>Mapping of parcels' access to: <br>
+              1. Parks <br>
+              2. Nature <br>
+              3. Greenery
+            </p>
+          </article>
+          <article class="indicator-box">
+            <h4>Density of Nature</h4>
+            <p>Calculation of: <br>
+              1. Tree canopy coverage <br>
+              2. Tree count
+            </p>
+          </article>
+          <article class="indicator-box">
+            <h4>Sustainability of Mobility</h4>
+            <p>Mapping of parcels' access to: <br>
+              1. Public transportation <br>
+              2. Cycling network
+            </p>
+          </article>
+          <article class="indicator-box">
+            <h4>Social and Community Hubs</h4>
+            <p>Mapping of parcels' access to: <br>
+              1. Community gardens <br>
+              2. Sports facilities <br>
+              3. Childcare services
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <div class="vienna-section">
+        <figure class="vienna-image">
+          <img src="images/Regen/vienna_map_zoom.webp" alt="Vienna case study map">
+        </figure>
+
+        <div class="vienna-copy">
+          <h3>2. Vienna Case Study.</h3>
+          <p class="section-text">
+            Map of Vienna showing the overlay of all regenerative indicators, alongside a zoomed-in view of the
+            Nordbahnhof site — a former train station now being redeveloped into a multifunctional, 
+            sustainable district with affordable housing, selected as one of the key case study sites. <br>
+             <br>
+            This analysis serves as a preliminary assessment and may not fully capture real-world conditions, as 
+            certain micro-scale factors influencing livability and accessibility are not represented. Future research 
+            using network-based or higher-resolution data could provide a more accurate and nuanced 
+            understanding.
+          </p>
+        </div>
+      </div>
+
+      <div class="scores-section">
+        <h3>3. Case Study Regenerative Scores.</h3>
+        <p class="section-text">
+          Map showing the compiled regenerative scores of residential parcels across five indicators: density of inhabitation, access to nature, density of nature, sustainable 
+          mobility, and access to social and community services. <br>
+          While most parcels perform well, some limitations exist—particularly the use of static 
+          datasets and reliance on OpenStreetMap to supplement Austria’s official data, which 
+          may introduce inaccuracies due to its ground-up, community-based data collection approach.
+        </p>
+
+        <div class="scores-grid">
+          <figure class="scores-map">
+            <img class="scores-map-image" src="images/Regen/sg_parcel%20animation%20(1).gif" alt="Animated regenerative scores map of Singapore">
+            <div class="scores-legend">
+              <h4>Regenerative Score Scale</h4>
+              <img class="scores-scale" src="images/Regen/sg_parcel%20animation%20scale.png" alt="Singapore regenerative score scale">
+            </div>
+            <figcaption>Singapore</figcaption>
+          </figure>
+          <figure class="scores-map">
+            <img class="scores-map-image" src="images/Regen/vienna_parcel%20animation.gif" alt="Animated regenerative scores map of Vienna">
+            <div class="scores-legend">
+              <h4>Regenerative Score Scale</h4>
+              <img class="scores-scale" src="images/Regen/vienna_parcel%20animation%20scale.png" alt="Vienna regenerative score scale">
+            </div>
+            <figcaption>Vienna, Austria</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

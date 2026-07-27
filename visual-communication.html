@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Communications — Arisa Teriyapirom</title>
+  <style>
+    :root { --bg: #f5f5f2; --text: #1f1f1f; --muted: #77736d; --line: #d8d1c7; --blue: #1d56cf; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 10; padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(247, 244, 238, 0.82); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(216, 209, 199, 0.5); }
+    .logo, nav a { color: var(--blue); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    nav { display: flex; gap: 28px; }
+    main { padding: 125px 40px 90px; min-height: 100vh; }
+    .page-header { padding-top: 0; }
+    h1 { font-family: Arial, Helvetica, sans-serif; color: var(--blue); font-size: 23px; font-weight: 700; line-height: 1; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    p { max-width: 680px; color: var(--muted); font-size: 17px; line-height: 1.6; }
+    .page-header p { width: 100%; max-width: none; }
+
+    .project-set {
+      width: 86%;
+      max-width: 1300px;
+      margin: 48px auto 0;
+    }
+
+    .project-set + .project-set {
+      margin-top: 72px;
+    }
+
+    .project-set h2 {
+      color: var(--blue);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      #text-decoration: underline;
+      #text-decoration-thickness: 1.5px;
+      #text-underline-offset: 5px;
+    }
+
+    .project-gallery {
+      position: relative;
+      margin-top: 24px;
+    }
+
+    .viasta-set .project-gallery {
+      margin-top: 15px;
+    }
+
+    .project-viewport {
+      overflow: hidden;
+    }
+
+    .project-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: calc((100% - 36px) / 4);
+      gap: 12px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .project-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-image {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #f3f3f3;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      transition: transform 0.35s ease;
+    }
+
+    .project-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .project-image img.wcs-01-image {
+      object-position: center bottom;
+    }
+
+    .project-image img.wcs-8653-image {
+      object-position: center 60%;
+    }
+
+    .project-image img.wcs-03-image {
+      object-fit: cover;
+      object-position: right center;
+      transform: scale(1.12);
+    }
+
+    .project-image:hover img.wcs-03-image {
+      transform: scale(1.16);
+    }
+
+    .project-image-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .viasta-set .project-image {
+      aspect-ratio: 1 / 1;
+      background: transparent;
+    }
+
+    .viasta-set .project-image img {
+      object-fit: contain;
+    }
+
+    .wcs-set .project-image img {
+      object-fit: cover;
+    }
+
+    .wcs-set .project-image {
+      aspect-ratio: 1 / 1;
+      background: transparent;
+    }
+
+    .gallery-next,
+    .gallery-previous {
+      position: absolute;
+      top: 50%;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(245, 245, 242, 0.9);
+      color: var(--text);
+      font-size: 23px;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .gallery-previous {
+      left: -54px;
+    }
+
+    .gallery-next {
+      right: -54px;
+    }
+
+    .gallery-next:disabled,
+    .gallery-previous:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+
+    .project-description {
+      width: 100%;
+      max-width: none;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .small-description-break {
+      display: block;
+      height: 6px;
+    }
+
+    .project-description a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 20px; }
+      main { padding: 110px 20px 72px; }
+      nav { gap: 16px; }
+      .project-set { width: 100%; }
+      .project-track { grid-auto-columns: calc((100% - 12px) / 2); }
+      .gallery-previous { left: 8px; }
+      .gallery-next { right: 8px; }
+    }
+
+    @media (max-width: 560px) {
+      .project-track { grid-auto-columns: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Arisa Teriyapirom</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="works.html">Works</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <div class="page-header">
+      <h1>Visual Communications and Exhibition Works.</h1>
+      <p>Exploring graphic design, branding, exhibitions, and visual storytelling across research, public engagement, and the built environment.</p>
+    </div>
+
+    <section class="project-set viasta-set" aria-labelledby="viasta-title">
+      <h2 id="viasta-title">1. Viasta 4.0</h2>
+      <p class="project-description">As part of the organizing and design team, I designed and developed the publicity materials for 
+        Viasta 4.0, creating a refreshed visual identity aimed at engaging and attracting a younger audience.<span class="small-description-break" aria-hidden="true"></span>
+        Moving away from the original marketing style, the graphics drew inspiration from familiar 
+        digital interfaces such as alarm apps and CAPTCHA systems to create a playful, relatable 
+        aesthetic. While introducing this contemporary visual language, the design retained the 
+        established green palette to align with Viasta’s sustainability-focused identity.
+      </p>
+      <div class="project-gallery">
+        <button class="gallery-previous" type="button" aria-label="Show previous Viasta images" data-track="viasta-track">&#10094;</button>
+        <div class="project-viewport">
+          <div class="project-track" id="viasta-track">
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/Social%20Media%20Final.png" alt="Viasta 4 social media graphic"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/Viasta%204%20-%20teaser.png" alt="Viasta 4 festival countdown graphic"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/event%20detail_1.png" alt="Viasta 4 event details graphic"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/filler_8.png" alt="Viasta 4 campaign graphic"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/event%20detail_2.png" alt="Viasta 4 event details graphic 2"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/filler_3.png" alt="Viasta 4 supporting graphic 3"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/filler_4.4.png" alt="Viasta 4 supporting graphic 4"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/filler%201.1.png" alt="Viasta 4 supporting graphic 1"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/viasta4/filler%202.png" alt="Viasta 4 supporting graphic 2"></figure>
+          </div>
+        </div>
+        <button class="gallery-next" type="button" aria-label="Show more Viasta images" data-track="viasta-track">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="project-set wcs-set" aria-labelledby="wcs-title">
+      <h2 id="wcs-title">2. World Cities Summit (2026)</h2>
+      <p class="project-description">I presented a research poster at the World Cities Summit Science of Cities Symposium, showcasing ongoing research alongside international academics and practitioners. 
+        <span class="small-description-break" aria-hidden="true"></span>I also worked closely with Prof. Eva Castro, servingas the primary designer for SUTD's exhibition booth, 
+      overseeing its design development, curation, and production while coordinating with multiple research teams.
+      The exhibition successfully engaged visitors from a wide range of discliplines, fostering meaningful conversations 
+    across academia, industry partners, and the public sectors.<span class="small-description-break" aria-hidden="true"></span>Read more about the WCS event here: <a href="https://www.linkedin.com/posts/arisa-teriyapirom-30a2b7158_over-the-last-couple-of-months-i-had-the-ugcPost-7474881979197452288-rbsi/?utm_source=share&utm_medium=member_desktop&rcm=ACoAACXGg_oB_uqGbJzY7fXOS9pSa6woPx_p0lo">LinkedIn post</a></p>
+      <div class="project-gallery">
+        <button class="gallery-previous" type="button" aria-label="Show previous WCS images" data-track="wcs-track">&#10094;</button>
+        <div class="project-viewport">
+          <div class="project-track" id="wcs-track">
+            <figure class="project-image"><img class="wcs-8653-image" src="images/graphic%20design/WCS/IMG_8653.jpeg" alt="World Cities Summit exhibition"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/WCS/06.jpeg" alt="WCS visual communication project 6"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/WCS/IMG_8623.jpeg" alt="World Cities Summit exhibition image 4"></figure>
+            <figure class="project-image"><img class="wcs-01-image" src="images/graphic%20design/WCS/01.jpeg" alt="WCS visual communication project 1"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/WCS/02.jpeg" alt="WCS visual communication project 2"></figure>
+            <figure class="project-image"><img class="wcs-03-image" src="images/graphic%20design/WCS/03.jpeg" alt="WCS visual communication project 3"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/WCS/IMG_8586.jpeg" alt="World Cities Summit exhibition image 2"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/WCS/IMG_8588.jpeg" alt="World Cities Summit exhibition image 3"></figure>
+            <figure class="project-image"><img src="images/graphic%20design/WCS/04.jpeg" alt="WCS visual communication project 4"></figure>
+          </div>
+        </div>
+        <button class="gallery-next" type="button" aria-label="Show more WCS images" data-track="wcs-track">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="project-set" aria-labelledby="climate-title">
+      <h2 id="climate-title">3. Climate Resilient Citizenry × Staying Cool</h2>
+      <p class="project-description">Contribution / graphic type: Add a description of your role and the visual communication materials developed for Climate Resilient Citizenry × Staying Cool here.</p>
+      <div class="project-gallery">
+        <div class="project-viewport">
+          <div class="project-track">
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-set" aria-labelledby="lkycic-title">
+      <h2 id="lkycic-title">4. SUTD LKYCIC Publicity</h2>
+      <p class="project-description">Contribution / graphic type: Add a description of your role and the publicity materials developed for SUTD LKYCIC here.</p>
+      <div class="project-gallery">
+        <div class="project-viewport">
+          <div class="project-track">
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+            <figure class="project-image"><span class="project-image-placeholder">Add project image</span></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    function updateGalleryArrows(track) {
+      const maximumScroll = track.scrollWidth - track.clientWidth;
+      const previousButton = document.querySelector('.gallery-previous[data-track="' + track.id + '"]');
+      const nextButton = document.querySelector('.gallery-next[data-track="' + track.id + '"]');
+      previousButton.disabled = track.scrollLeft <= 4;
+      nextButton.disabled = track.scrollLeft >= maximumScroll - 4;
+    }
+
+    document.querySelectorAll('.gallery-next, .gallery-previous').forEach(function(button) {
+      button.addEventListener('click', function() {
+        const track = document.getElementById(button.dataset.track);
+        const isPrevious = button.classList.contains('gallery-previous');
+        track.scrollBy({ left: isPrevious ? -track.clientWidth : track.clientWidth, behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('.project-track[id]').forEach(function(track) {
+      updateGalleryArrows(track);
+      track.addEventListener('scroll', function() {
+        updateGalleryArrows(track);
+      });
+    });
+  </script>
+</body>
+</html>
