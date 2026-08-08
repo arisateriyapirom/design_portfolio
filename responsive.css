@@ -1,0 +1,59 @@
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+header {
+  -webkit-backdrop-filter: blur(12px);
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 15px 16px 14px !important;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  header .logo {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  header nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px !important;
+    font-size: 11px;
+  }
+
+  header nav a {
+    font-size: 11px;
+  }
+
+  main {
+    padding-top: 118px !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  h1 {
+    white-space: normal !important;
+  }
+}
