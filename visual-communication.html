@@ -187,6 +187,15 @@
       object-position: center 68%;
     }
 
+    .art-set .project-image {
+      aspect-ratio: 1 / 1;
+      background: transparent;
+    }
+
+    .art-set .project-image img {
+      object-fit: cover;
+    }
+
     .gallery-next,
     .gallery-previous {
       position: absolute;
@@ -384,6 +393,21 @@
           </div>
         </div>
         <button class="gallery-next" type="button" aria-label="Show more Positive City Lab Playbook images" data-track="book-track">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="project-set art-set" aria-labelledby="personal-art-design-title">
+      <h2 id="personal-art-design-title">6. Personal Art and Design</h2>
+      <p class="project-description">A selection of personal drawings and sketches exploring observation, form, and visual expression. Art is a hobby </p>
+      <div class="project-gallery">
+        <button class="gallery-previous" type="button" aria-label="Show previous Personal Art and Design images" data-track="art-track">&#10094;</button>
+        <div class="project-viewport">
+          <div class="project-track" id="art-track">
+            <figure class="project-image"><img loading="lazy" decoding="async" src="images/graphic%20design/Art/Sketch_1.png" alt="Personal sketch"></figure>
+            <figure class="project-image"><img loading="lazy" decoding="async" src="images/graphic%20design/Art/Drawing_1.png" alt="Personal drawing"></figure>
+          </div>
+        </div>
+        <button class="gallery-next" type="button" aria-label="Show more Personal Art and Design images" data-track="art-track">&#10095;</button>
       </div>
     </section>
   </main>
